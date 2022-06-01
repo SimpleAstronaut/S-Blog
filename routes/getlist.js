@@ -36,7 +36,7 @@ router.get('/blog/getlist', function(req, res, next){
                     ret.push(data[i]);
                     //console.log(data);
                 }
-                ret = eval('('+ret+')');
+                //ret = eval('('+ret+')');
                 res.send(ret);
             }
         })
