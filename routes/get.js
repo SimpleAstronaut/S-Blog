@@ -52,6 +52,7 @@ router.get('/pages/get', function(req, res){
             if(pageName === data[i].pageName){
                 try {
                     ret = fs.readFileSync('./pages/'+pageName+'.json', 'utf8');
+                    console.log(ret);
                     //ret = JSON.stringify(ret);
                 } catch (err){
                     console.error(err);
