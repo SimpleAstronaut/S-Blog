@@ -36,4 +36,32 @@ router.get('/blog/get', function(req, res){
     })
 })
 
+//获取页面接口
+router.get('/pages/get', function(req, res){
+    const pageName = req.query.page;
+    fs.readFile('./pages/pages.json', 'utf8', (err, data)=>{
+        if(err){
+            console.log(err);
+            return;
+        }
+        data = JSON.parse(data);
+
+        //生成返回信息
+        let ret = { status : 300, msg : "NO PAGES" };
+        for(let i=0; i<data.length; i++){
+            if(pageName === data[i].pageName){
+                try {
+                    ret = fs.readFileSync('./pages/'+pageName+'.json', 'utf8');
+                    //ret = JSON.stringify(ret);
+                } catch (err){
+                    console.error(err);
+                }
+            }
+        }
+
+        //ret = eval('('+ret+')');
+        res.send(ret);
+    })
+})
+
 module.exports = router;

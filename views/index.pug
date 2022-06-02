@@ -1,5 +1,10 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='./stylesheets/style.css')
+  body
+    block content
+      h1= msg
+      a(href='https://doc.sblog.jdsj.site') 查阅文档
+      p 后端基于node.js express

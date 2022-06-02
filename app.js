@@ -8,7 +8,7 @@ const indexRouter = require('./routes/index'); //主页面路由
 const loginRouter = require('./routes/login'); //登录接口路由
 const uploadRouter = require('./routes/upload'); //上传文章接口路由
 const getlistRouter = require('./routes/getlist'); //获取文章列表路由
-const getBlogRouter = require('./routes/getblog'); //获取文章详细路由
+const getRouter = require('./routes/get'); //获取文章详细路由
 
 //const usersRouter = require('./routes/users');
 
@@ -40,7 +40,7 @@ app.use('/', indexRouter);
 app.use(loginRouter);
 app.use(uploadRouter);
 app.use(getlistRouter);
-app.use(getBlogRouter);
+app.use(getRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

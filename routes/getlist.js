@@ -43,4 +43,11 @@ router.get('/blog/getlist', function(req, res, next){
     }
 })
 
+//获取文章列表
+router.get('/pages/getlist', function(req,res){
+    fs.readFile('./pages/pages.json', 'utf8', (err, data)=>{
+        res.send(data);
+    })
+})
+
 module.exports = router;
