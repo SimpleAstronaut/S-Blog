@@ -11,7 +11,8 @@ const loginRouter = require('./routes/login'); //登录接口路由
 const uploadRouter = require('./routes/upload'); //上传文章接口路由
 const getlistRouter = require('./routes/getlist'); //获取文章列表路由
 const getRouter = require('./routes/get');
-const axios = require("axios"); //获取文章详细路由
+const axios = require("axios");
+const {response} = require("express"); //获取文章详细路由
 
 //const usersRouter = require('./routes/users');
 
@@ -59,6 +60,18 @@ app.get('/page', function(req, res){
       }
     })
   }
+})
+
+app.get('/blog', function(req, res){
+    const blogName = req.query.blog;
+    axios.get('http://127.0.0.1:9000/blog/get', { params: { blogname : blogName }}).then(function(response){
+      const status = response.data.status;
+      if(status === 300){
+        res.sendFile(__dirname+'/public'+'/404.html');
+      } else {
+        res.sendFile(__dirname+'/public'+'/page.html');
+      }
+    })
 })
 
 //public
