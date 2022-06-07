@@ -10,7 +10,8 @@ const indexRouter = require('./routes/index'); //主页面路由
 const loginRouter = require('./routes/login'); //登录接口路由
 const uploadRouter = require('./routes/upload'); //上传文章接口路由
 const getlistRouter = require('./routes/getlist'); //获取文章列表路由
-const getRouter = require('./routes/get'); //获取文章详细路由
+const getRouter = require('./routes/get');
+const axios = require("axios"); //获取文章详细路由
 
 //const usersRouter = require('./routes/users');
 
@@ -43,6 +44,22 @@ app.use(loginRouter);
 app.use(uploadRouter);
 app.use(getlistRouter);
 app.use(getRouter);
+
+app.get('/page', function(req, res){
+  if(req.query === null){
+    res.sendFile(__dirname+'/public'+'/index.html');
+  } else {
+    const page = req.query.page;
+    axios.get('http://127.0.0.1:9000/pages/get?page='+page).then(response =>{
+      const status = response.data.status;
+      if(status === 300){
+        res.sendFile(__dirname+'/public'+'/404.html');
+      } else {
+        res.sendFile(__dirname+'/public'+'/page.html');
+      }
+    })
+  }
+})
 
 //public
 app.use(exStatic('./public'));
