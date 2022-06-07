@@ -25,12 +25,13 @@ router.post('/blog/upload', function(req, res, next){
             //获取请求信息
             const blogtitle = req.body.blogtitle;
             const blog = req.body.blog;
+            const bloginfo = req.body.bloginfo;
             const time = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
 
             //获取博客目录
             fs.readFile('./blog/blog.json', 'utf8', (err, data)=>{
                 data = eval('('+data+')');
-                let newBlog = '{"blogtitle":"'+blogtitle+'","auther":"'+username+'","time":"'+time+'"}'
+                let newBlog = '{"blogtitle":"'+blogtitle+'","auther":"'+username+'","time":"'+time+'","bloginfo":"'+bloginfo+'"}'
                 newBlog = eval('('+newBlog+')');
                 data.unshift(newBlog);
                 //console.log(data);

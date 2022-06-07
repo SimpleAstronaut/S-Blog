@@ -22,7 +22,7 @@ window.onload = function(){
 
             let blogtext = document.createElement('P');
             blogtext.className = 'card-text';
-            blogtext.textContent = '测试'
+            blogtext.textContent = data[i].bloginfo;
 
             let blogbutton = document.createElement('A');
             blogbutton.className = 'btn btn-primary';
