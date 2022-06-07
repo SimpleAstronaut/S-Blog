@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const { execFileSync } = require('child_process');
+const exStatic = require("express-static");
 
 const indexRouter = require('./routes/index'); //主页面路由
 const loginRouter = require('./routes/login'); //登录接口路由
@@ -36,11 +38,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Main Router
-app.use('/', indexRouter);
+app.use(indexRouter);
 app.use(loginRouter);
 app.use(uploadRouter);
 app.use(getlistRouter);
 app.use(getRouter);
+
+//public
+app.use(exStatic('./public'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

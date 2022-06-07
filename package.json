@@ -11,6 +11,7 @@
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "express": "~4.16.1",
+    "express-static": "^1.2.6",
     "http-errors": "~1.6.3",
     "md5": "^2.3.0",
     "moment": "^2.29.3",
