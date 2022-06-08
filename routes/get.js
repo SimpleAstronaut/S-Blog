@@ -10,7 +10,8 @@ const fs = require('fs');
 router.get('/blog/get', function(req, res){
 
     //获取请求blog Name
-    const blogName = req.query.blogname;
+    const blogName = decodeURI(req.query.blogname);
+    console.log(blogName);
     fs.readFile('./blog/blog.json', 'utf8', (err, data)=>{
         if(err){
             console.log(err);
