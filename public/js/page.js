@@ -1,3 +1,4 @@
+import { marked } from 'marked'
 //paraName 等找参数的名称
 function GetUrlParam(paraName) {
     let url = document.location.toString();
@@ -32,9 +33,10 @@ window.onload = function(){
             let newblog = document.createElement('P');
             //console.log(data);
             data = JSON.parse(data);
-            newblog.textContent = JSON.stringify(data.blog);
+            newblog.textContent = data.blog;
 
-            document.getElementById('page').appendChild(newblog);
+            document.getElementById('page').innerHTML = marked(data.blog);
+            //document.getElementById('page').appendChild(newblog);
         })
     } else if(getpage !== ''){
         console.log('page name = '+getpage);
@@ -43,7 +45,7 @@ window.onload = function(){
             let newpage = document.createElement('P');
             //console.log(data);
             data = JSON.parse(data);
-            newpage.textContent = JSON.stringify(data.page);
+            newpage.textContent = data.page;
 
             document.getElementById('page').appendChild(newpage);
         })
